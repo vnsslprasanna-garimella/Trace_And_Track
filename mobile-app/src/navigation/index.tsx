@@ -5,6 +5,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import SplashScreen from '../screens/Splash';
 import LoginScreen from '../screens/Login';
+import SignUpScreen from '../screens/SignUp';
+import ForgotPasswordScreen from '../screens/ForgotPassword';
 import HomeScreen from '../screens/Home';
 import LocationScreen from '../screens/Location';
 import ProfileScreen from '../screens/Profile';
@@ -71,6 +73,8 @@ export default function AppNavigation() {
       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Splash">
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
         <Stack.Screen name="MainTabs" component={MainTabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
