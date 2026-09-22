@@ -97,7 +97,7 @@ export default function SignUpScreen({ navigation }: Props) {
     if (password !== confirmPassword) { setMessage({ type: 'error', text: 'Passwords do not match.' }); return; }
 
     // TODO: Call signup API
-    setMessage({ type: 'success', text: 'Account created! Please return to sign in.' });
+    navigation.replace('Login', { successMessage: 'Account created successfully! Please sign in.' });
   };
 
   const pwdCheck = isValidPassword(password);
@@ -149,13 +149,12 @@ export default function SignUpScreen({ navigation }: Props) {
                 <Hash color="#94a3b8" size={18} />
                 <TextInput
                   className="flex-1 text-white text-base ml-3"
-                  placeholder="4–8 digit PIN (numbers only)"
+                  placeholder="4–10 character PIN"
                   placeholderTextColor="#64748b"
                   value={pin}
-                  onChangeText={text => setPin(text.replace(/[^0-9]/g, ''))}
-                  keyboardType="number-pad"
-                  maxLength={8}
-                  secureTextEntry
+                  onChangeText={setPin}
+                  keyboardType="default"
+                  maxLength={10}
                 />
               </View>
             </View>

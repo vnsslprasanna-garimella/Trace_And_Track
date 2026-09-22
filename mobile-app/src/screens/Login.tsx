@@ -5,10 +5,12 @@ import {
 } from 'react-native';
 import { Lock, Mail, Hash, Eye, EyeOff } from 'lucide-react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/types';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Login'>;
+  route: RouteProp<RootStackParamList, 'Login'>;
 };
 
 function detectInputType(value: string): 'email' | 'pin' | 'unknown' {
@@ -17,11 +19,13 @@ function detectInputType(value: string): 'email' | 'pin' | 'unknown' {
   return 'unknown';
 }
 
-export default function LoginScreen({ navigation }: Props) {
+export default function LoginScreen({ navigation, route }: Props) {
   const [identifier, setIdentifier] = useState(''); // email OR pin
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [message, setMessage] = useState<{type: 'error' | 'success', text: string} | null>(null);
+  const [message, setMessage] = useState<{type: 'error' | 'success', text: string} | null>(
+    route.params?.successMessage ? { type: 'success', text: route.params.successMessage } : null
+  );
 
   const inputType = detectInputType(identifier);
 
